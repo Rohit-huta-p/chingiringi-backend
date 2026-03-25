@@ -35,7 +35,7 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 
 // Enable CORS
 app.use(cors({
-  origin: ['http://localhost:8081', 'http://192.168.1.90:8081'], // Update for frontend URLs
+  origin: ['http://localhost:8081', 'http://192.168.1.90:8081', 'https://chingiringi-web-app.onrender.com'], // Update for frontend URLs
   credentials: true,
 }));
 
