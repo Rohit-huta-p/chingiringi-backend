@@ -13,6 +13,8 @@ import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 import authRoutes from './modules/auth/authRoutes.js';
 
 const app = express();
+app.set('trust proxy', 1); // Enable trust proxy for Render load balancer to recognize HTTPS cookies
+
 
 // Security HTTP headers
 app.use(helmet());
@@ -35,7 +37,13 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 
 // Enable CORS
 app.use(cors({
-  origin: ['http://localhost:8081', 'http://192.168.1.90:8081', 'https://chingiringi-web-app.onrender.com'], // Update for frontend URLs
+  origin: [
+    'http://localhost:8081', 
+    'http://192.168.1.90:8081', 
+    'https://chingiringi-web-app.onrender.com',
+    'https://chingiring-web-app.onrender.com', // Added possible variant
+    'https://chingiringi.com' // Future domain
+  ],
   credentials: true,
 }));
 
